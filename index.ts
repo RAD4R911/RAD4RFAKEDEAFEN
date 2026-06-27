@@ -5,7 +5,7 @@
 
 import { ApplicationCommandInputType, sendBotMessage } from "@api/Commands";
 import definePlugin from "@utils/types";
-import { SelectedChannelStore, UserStore, VoiceStateStore } from "@webpack/common";
+import { SelectedChannelStore } from "@webpack/common";
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder("utf-8", { fatal: false });
@@ -20,15 +20,6 @@ function patchVoiceStatePayload(payload: string) {
     return payload
         .replaceAll('"self_deaf":false', '"self_deaf":true')
         .replaceAll('"self_mute":false', '"self_mute":true');
-}
-
-function isMutedOrDeafened() {
-    const userId = UserStore.getCurrentUser()?.id;
-    if (!userId)
-        return false;
-
-    const voiceState = VoiceStateStore.getVoiceStateForUser(userId);
-    return Boolean(voiceState?.selfMute || voiceState?.selfDeaf);
 }
 
 function isConnectedToVoice() {
@@ -61,11 +52,6 @@ export default definePlugin({
 
             if (!isConnectedToVoice()) {
                 sendBotMessage(ctx.channel.id, { content: "Connect to a voice channel first." });
-                return;
-            }
-
-            if (!isMutedOrDeafened()) {
-                sendBotMessage(ctx.channel.id, { content: "Mute or deafen yourself first, then run the command again." });
                 return;
             }
 

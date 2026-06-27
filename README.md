@@ -6,7 +6,6 @@ RAD4RFAKEDEAFEN is a native Vencord userplugin inspired by FakeDeafen. It adds a
 
 - Toggle fake mute/deafen with `/rad4rfakedeafen`
 - Requires you to be connected to voice first
-- Requires you to mute or deafen yourself before enabling
 - Automatically restores WebSocket behavior when the plugin is disabled
 
 ## Install
@@ -26,9 +25,8 @@ The plugin is marked as required, so it starts automatically after Vencord loads
 ## Usage
 
 1. Join a voice channel.
-2. Mute or deafen yourself first.
-3. Run `/rad4rfakedeafen` to enable it.
-4. Run `/rad4rfakedeafen` again to turn it off.
+2. Run `/rad4rfakedeafen` to enable it.
+3. Run `/rad4rfakedeafen` again to turn it off.
 
 ## Credits
 

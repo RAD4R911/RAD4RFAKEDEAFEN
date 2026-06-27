@@ -1,24 +1,35 @@
 # RAD4RFAKEDEAFEN
 
-RAD4RFAKEDEAFEN is a renamed BetterDiscord plugin build based on FakeDeafen. It adds a panel button and context-menu toggle for fake mute/deafen behavior while you are connected to a voice channel.
+RAD4RFAKEDEAFEN is a native Vencord userplugin inspired by FakeDeafen. It adds a `/rad4rfakedeafen` command for toggling fake mute/deafen behavior while you are connected to a voice channel.
 
 ## Features
 
-- Toggle fake mute/deafen from the account panel
-- Toggle fake mute/deafen from the audio device context menu
-- Optional toggle sounds
-- Automatically disables when switching or leaving voice channels
+- Toggle fake mute/deafen with `/rad4rfakedeafen`
+- Requires you to be connected to voice first
+- Requires you to mute or deafen yourself before enabling
+- Automatically restores WebSocket behavior when the plugin is disabled
 
 ## Install
 
-Use this raw plugin URL with a BetterDiscord-compatible plugin loader:
+1. In your Vencord source checkout, create this folder:
 
-```text
-https://raw.githubusercontent.com/RAD4R911/RAD4RFAKEDEAFEN/main/RAD4RFAKEDEAFEN.plugin.js
-```
+   ```text
+   src/userplugins/RAD4RFAKEDEAFEN
+   ```
 
-The plugin requires ZeresPluginLibrary.
+2. Copy `index.ts` from this repo into that folder.
+3. Build and install Vencord.
+4. Restart Discord.
+
+The plugin is marked as required, so it starts automatically after Vencord loads.
+
+## Usage
+
+1. Join a voice channel.
+2. Mute or deafen yourself first.
+3. Run `/rad4rfakedeafen` to enable it.
+4. Run `/rad4rfakedeafen` again to turn it off.
 
 ## Credits
 
-Based on the original FakeDeafen plugin by arg0NNY/okdevme.
+Inspired by the original FakeDeafen plugin by arg0NNY/okdevme.

@@ -8,7 +8,7 @@ import definePlugin from "@utils/types";
 import { SelectedChannelStore, UserStore, VoiceStateStore } from "@webpack/common";
 
 const encoder = new TextEncoder();
-const decoder = new TextDecoder("utf-8");
+const decoder = new TextDecoder("utf-8", { fatal: false });
 
 let originalSend: typeof WebSocket.prototype.send | undefined;
 let fakeEnabled = false;
@@ -79,6 +79,9 @@ export default definePlugin({
             originalSend = WebSocket.prototype.send;
 
         WebSocket.prototype.send = function (data: string | ArrayBufferLike | Blob | ArrayBufferView) {
+            if (!fakeEnabled)
+                return originalSend!.call(this, data);
+
             if (typeof data === "string") {
                 data = patchVoiceStatePayload(data);
             } else if (data instanceof ArrayBuffer) {
